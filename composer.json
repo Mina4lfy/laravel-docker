@@ -1,0 +1,19 @@
+{
+    "name": "mina4lfy/laravel-docker",
+    "description": "Adds docker support for Laravel projects including the following services: MariaDB, Redis, Supervisord, and PHP/Laravel.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mina4lfy\\LaravelDocker\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mina Alfy",
+            "email": "minaalfy8@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
