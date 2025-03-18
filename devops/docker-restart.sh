@@ -44,4 +44,4 @@ fi
 
 docker compose up -d
 
-docker compose exec -it laravapp sh || docker compose logs laravapp || exit 1
+docker compose exec -it app sh || docker compose logs laravapp || exit 1

@@ -21,8 +21,7 @@ RUN apk update \
     unzip \
     nodejs \
     npm \
-  && docker-php-ext-install pdo_mysql mysqli mbstring exif pcntl bcmath gd calendar zip
-# opcache
+  && docker-php-ext-install pdo_mysql mysqli mbstring exif pcntl bcmath gd calendar zip opcache
 
 # Clear cache
 RUN rm -rf /var/cache/apk/*
