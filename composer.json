@@ -1,19 +1,43 @@
 {
-    "name": "mina4lfy/laravel-docker",
-    "description": "Adds docker support for Laravel projects including the following services: MariaDB, Redis, Supervisord, and PHP/Laravel.",
-    "type": "library",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Mina4lfy\\LaravelDocker\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Mina Alfy",
-            "email": "minaalfy8@gmail.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {}
+  "name": "mina4lfy/laravel-docker",
+  "description": "Adds docker support for Laravel projects including the following services: MariaDB, Redis, Supervisord, and PHP/Laravel.",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "laravel",
+    "docker"
+  ],
+  "autoload": {
+    "psr-4": {
+      "Mina4lfy\\LaravelDocker\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Mina Alfy",
+      "email": "minaalfy8@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "laravel/framework": "^12.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Mina4lfy\\LaravelDocker\\DockerServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "php-http/discovery": true
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
 }
