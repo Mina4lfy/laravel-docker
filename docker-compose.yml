@@ -1,7 +1,7 @@
 services:
 
   database:
-    container_name: laravel-docker-database
+    container_name: laravel-docker-mariadb
     image: mariadb:lts
     environment:
       MARIADB_DATABASE: ${DB_DATABASE}
@@ -10,7 +10,7 @@ services:
       MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
       MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "true"
     volumes:
-      - ./devops/mariadb/custom.cnf:/etc/mysql/custom.cnf
+      - ./devops/docker/mariadb/custom.cnf:/etc/mysql/custom.cnf
       - db-data:/var/lib/mysql/
     ports:
       - "${DOCKER_DATABASE_PORT:-3310}:3306"
@@ -53,7 +53,7 @@ services:
       - "${DOCKER_APPSERVER_PORT:-80}:80"
     volumes:
       - ./:/var/www/html
-      - ./devops/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./devops/docker/nginx/conf.d/:/etc/nginx/conf.d/
       - ./devops/logs/nginx:/var/log/nginx
     networks:
       - laravel-docker-network
@@ -69,15 +69,15 @@ services:
         user: laravel
         uid: 1000
       context: .
-      dockerfile: ./devops/php/Dockerfile
+      dockerfile: ./devops/docker/php/Dockerfile
     environment:
       SERVICE_NAME: app
       SERVICE_TAGS: local
     working_dir: /var/www/html
     volumes:
       - ./:/var/www/html
-      - ./devops/php/conf.d/custom.ini:/usr/local/etc/php/conf.d/custom.ini
-      # - ./devops/php/conf.d/disable-opcache.ini:/usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
+      - ./devops/docker/php/conf.d/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+      # - ./devops/docker/php/conf.d/disable-opcache.ini:/usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
     depends_on:
       - database
       - webserver
@@ -93,10 +93,10 @@ services:
       args:
         PHP_VERSION: ${DOCKER_PHP_VERSION:-8.2}
       context: .
-      dockerfile: ./devops/supervisord/Dockerfile
+      dockerfile: ./devops/docker/supervisord/Dockerfile
     volumes:
       - ./:/var/www/html
-      - ./devops/supervisord/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ./devops/docker/supervisord/supervisord.conf:/etc/supervisor/supervisord.conf
       - ./devops/logs/supervisord/:/etc/supervisor/logs/
     depends_on:
       - app

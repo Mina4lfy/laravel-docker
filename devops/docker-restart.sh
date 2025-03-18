@@ -33,7 +33,7 @@ else
       docker compose down --volumes --remove-orphans --rmi local
       docker compose up -d
       sleep 10
-      docker exec laravel-app ./devops/install.sh
+      docker compose exec app ./devops/install.sh
       break
       ;;
     esac
@@ -44,4 +44,4 @@ fi
 
 docker compose up -d
 
-docker exec -it laravel-app sh || docker logs laravel-app || exit 1
+docker compose exec -it laravapp sh || docker compose logs laravapp || exit 1

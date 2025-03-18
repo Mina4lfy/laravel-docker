@@ -17,7 +17,11 @@ class DockerServiceProvider extends ServiceProvider
       return;
     }
 
-    $this->publishes([__DIR__ . '/../devops' => \base_path('devops')], 'laravel-docker');
+    $this->publishes([
+      __DIR__ . '/../devops'              => \base_path('devops'),
+      __DIR__ . '/../docker-compose.yml'  => \base_path('docker-compose.yml'),
+      __DIR__ . '/../.dockerignore'       => \base_path('.dockerignore'),
+    ], 'laravel-docker');
   }
 
   /**
